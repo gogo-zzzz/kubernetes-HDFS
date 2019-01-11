@@ -120,7 +120,7 @@ spec:
 #              mountPath: /hadoop/dfs/data/{{ $index }}
 #            {{- end }}
             - name: datanodedir
-              mountPath: /hadoop/dfs/data/{{ $index }}
+              mountPath: /hadoop/dfs/data
 #              subPath: data
             {{- if .Values.global.kerberosEnabled }}
             - name: kerberos-config
@@ -170,11 +170,11 @@ spec:
           configMap:
             name: {{ template "hdfs-k8s.datanode.fullname" . }}-scripts
             defaultMode: 0744
-        {{- range $index, $path := .Values.global.dataNodeHostPath }}
-        - name: hdfs-data-{{ $index }}
-          hostPath:
-            path: {{ $path }}
-        {{- end }}
+#        {{- range $index, $path := .Values.global.dataNodeHostPath }}
+#        - name: hdfs-data-{{ $index }}
+#          hostPath:
+#            path: {{ $path }}
+#        {{- end }}
         - name: hdfs-config
           configMap:
             name: {{ template "hdfs-k8s.config.fullname" . }}
