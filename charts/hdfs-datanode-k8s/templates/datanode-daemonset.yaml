@@ -175,9 +175,6 @@ spec:
 #          hostPath:
 #            path: {{ $path }}
 #        {{- end }}
-#        - name: datanodedir
-#          persistentVolumeClaim:
-#            claimName: {{ include "hadoop.fullname" . }}-hdfs-dn
         - name: hdfs-config
           configMap:
             name: {{ template "hdfs-k8s.config.fullname" . }}
