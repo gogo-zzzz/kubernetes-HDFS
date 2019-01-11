@@ -192,7 +192,6 @@ data:
       </property>
       <property>
         <name>dfs.datanode.data.dir</name>
-#        <value>{{ template "datanode-data-dirs" . }}</value>
           <value>file://hadoop/dfs/data</value>
       </property>
     </configuration>
