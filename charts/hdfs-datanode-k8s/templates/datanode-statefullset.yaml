@@ -179,10 +179,7 @@ spec:
 #              subPath: data
             - name: datadatadir
               mountPath: /hadoop/dfs/data
-#              subPath: data
-            - name: hdfs-config
-              mountPath: /etc/hadoop-custom-conf
-              readOnly: true           
+#              subPath: data     
             {{- if .Values.global.kerberosEnabled }}
             - name: kerberos-config
             configMap:
