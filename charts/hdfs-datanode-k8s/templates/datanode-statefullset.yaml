@@ -181,21 +181,22 @@ spec:
               mountPath: /hadoop/dfs/data
 #              subPath: data
             - name: hdfs-config
-              configMap:
-                name: {{ template "hdfs-k8s.config.fullname" . }}            
+              mountPath: /etc/hadoop-custom-conf
+              readOnly: true           
             {{- if .Values.global.kerberosEnabled }}
             - name: kerberos-config
-              mountPath: /etc/krb5.conf
-              subPath: {{ .Values.global.kerberosConfigFileName }}
-              readOnly: true
+            configMap:
+                name: {{ template "krb5-configmap" . }}
+            - name: kerberos-keytabs
+            secret:
+                secretName: {{ template "krb5-keytabs-secret" . }}
             - name: kerberos-keytab-copy
-              mountPath: /etc/security/
-              readOnly: true
+            emptyDir: {}
             {{- if .Values.global.jsvcEnabled }}
             - name: jsvc-home
-              mountPath: /jsvc-home
+            emptyDir: {}
             {{- end }}
-#            {{- end }}
+            {{- end }}
       {{- if .Values.global.kerberosEnabled }}
       initContainers:
         - name: copy-kerberos-keytab
