@@ -14,7 +14,7 @@ metadata:
     service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
 spec:
   ports:
-  - port: 1006
+  - port: 9000
     name: fs
   - port: 50075
     name: http
