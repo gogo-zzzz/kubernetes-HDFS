@@ -181,6 +181,8 @@ spec:
               mountPath: /hadoop/dfs/data
 #              subPath: data
             - name: hdfs-config
+              configMap:
+                name: {{ template "hdfs-k8s.config.fullname" . }}            
             {{- if .Values.global.kerberosEnabled }}
             - name: kerberos-config
               mountPath: /etc/krb5.conf
