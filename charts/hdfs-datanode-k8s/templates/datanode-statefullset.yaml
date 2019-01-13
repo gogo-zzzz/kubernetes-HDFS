@@ -14,9 +14,9 @@ metadata:
     service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
 spec:
   ports:
-  - port: 8020
+  - port: 1006
     name: fs
-  - port: 50070
+  - port: 50075
     name: http
   clusterIP: None
   selector:
